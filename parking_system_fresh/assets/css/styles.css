@@ -1,0 +1,130 @@
+/* --- ParkSys Fresh CSS --- */
+
+/* Variables */
+:root {
+    --primary-color: #0d6efd; /* Bootstrap blue */
+    --secondary-color: #6c757d;
+    --success-color: #198754;
+    --danger-color: #dc3545;
+    --warning-color: #ffc107;
+    --light-bg: #f8f9fa;
+    --white-bg: #ffffff;
+    --dark-text: #212529;
+    --light-text: #6c757d;
+    --border-color: #dee2e6;
+    --border-radius: 0.375rem; /* Bootstrap default */
+}
+
+/* Base */
+body {
+    background-color: var(--light-bg);
+    color: var(--dark-text);
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", "Noto Sans", "Liberation Sans", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    display: flex; /* Flex layout for sticky footer */
+    flex-direction: column; /* Stack header, main, footer vertically */
+    min-height: 100vh; /* Ensure body takes full viewport height */
+}
+main {
+     flex: 1; /* Allow main content to grow and push footer down */
+}
+
+
+/* Navbar */
+.navbar {
+    transition: box-shadow 0.3s ease;
+}
+.navbar-brand i { /* Ensure icon has color */
+     color: var(--primary-color);
+}
+.nav-link.active {
+    font-weight: 600;
+}
+
+/* Cards */
+.card {
+    border: 1px solid var(--border-color);
+}
+.card-header {
+     background-color: var(--white-bg);
+     border-bottom: 1px solid var(--border-color);
+     font-weight: 600;
+}
+.slot-card {
+    border-radius: var(--border-radius);
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+    border-left-width: 5px;
+    border-left-style: solid;
+}
+.slot-card.available {
+    border-left-color: var(--success-color);
+}
+.slot-card.booked {
+    border-left-color: var(--danger-color);
+    opacity: 0.75; /* Slightly fade booked slots */
+}
+.slot-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+}
+.slot-card img {
+    border-top-left-radius: calc(var(--border-radius) - 1px); /* Match card radius */
+    border-top-right-radius: calc(var(--border-radius) - 1px);
+    max-height: 150px; /* Limit image height */
+    object-fit: cover; /* Ensure image covers area */
+}
+.slot-card .card-body {
+     padding: 1rem; /* Adjust padding if needed */
+}
+
+/* Forms */
+.form-label {
+    font-weight: 500;
+}
+.form-text {
+    font-size: 0.875em;
+}
+
+/* Modal */
+.modal-header.bg-primary .btn-close-white,
+.modal-header.bg-success .btn-close-white,
+.modal-header.bg-danger .btn-close-white,
+.modal-header.bg-warning .btn-close-white,
+.modal-header.bg-info .btn-close-white
+ {
+    filter: invert(1) grayscale(100%) brightness(200%); /* Make close button visible on dark bg */
+}
+.modal-dialog-centered { /* Ensure modal is vertically centered */
+    display: flex;
+    align-items: center;
+    min-height: calc(100% - 1rem);
+}
+/* Ensure modal content (like buttons) are clickable */
+.modal-open .modal .modal-body,
+.modal-open .modal .modal-footer {
+    z-index: 1056 !important; /* Above backdrop (1055), below header/controls if needed */
+    position: relative;
+}
+.modal-open .modal .form-control,
+.modal-open .modal .form-select,
+.modal-open .modal .btn {
+  z-index: 1060 !important; /* Ensure controls are above body */
+  position: relative;
+}
+
+
+/* Footer */
+footer {
+    font-size: 0.9em;
+     background-color: var(--dark-text); /* Ensure footer has background */
+     color: var(--light-bg);
+}
+
+/* Utility */
+.fade-in {
+    opacity: 0;
+    animation: fadeInAnimation 0.5s ease-out forwards;
+}
+@keyframes fadeInAnimation {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
